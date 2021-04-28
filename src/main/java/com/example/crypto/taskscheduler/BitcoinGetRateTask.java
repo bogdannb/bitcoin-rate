@@ -23,7 +23,7 @@ class BitcoinGetRateTask implements Runnable {
         WebClient.ResponseSpec responseSpec = webClient.get().retrieve();
         Flux<CoindeskResponse> response = responseSpec.bodyToFlux(CoindeskResponse.class);
         response.subscribe(coindeskResponse -> {
-            logger.info("Last know rate is " + coindeskResponse.getBitcoinToUsdRate());
+            logger.info("Last know rate is " + coindeskResponse.getBitcoinToUsdRate() + " at " + coindeskResponse.getExchangeDateUTC());
             ExchangeRate exchangeRate = ExchangeRate.builder()
                     .fromCurrency(Currency.BITCOIN)
                     .toCurrency(Currency.USD)

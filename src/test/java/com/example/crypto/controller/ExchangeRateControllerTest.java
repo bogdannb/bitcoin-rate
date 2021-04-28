@@ -1,6 +1,5 @@
 package com.example.crypto.controller;
 
-import com.example.crypto.model.Currency;
 import com.example.crypto.model.ExchangeRate;
 import com.example.crypto.repository.ExchangeRateRepository;
 import org.junit.jupiter.api.Test;
@@ -11,10 +10,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.crypto.TestUtil.getCurrentDate;
+import static com.example.crypto.TestUtil.getExchangeRate;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -49,16 +49,5 @@ class ExchangeRateControllerTest {
         assertEquals(exchangeRates, bitcoinExchangeRates);
     }
 
-    private ExchangeRate getExchangeRate(double rate) {
-        return ExchangeRate.builder()
-                .rate(rate)
-                .fromCurrency(Currency.BITCOIN)
-                .toCurrency(Currency.USD)
-                .exchangeDate(getCurrentDate())
-                .build();
-    }
 
-    private Date getCurrentDate() {
-        return Calendar.getInstance().getTime();
-    }
 }
